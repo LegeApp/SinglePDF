@@ -1,0 +1,58 @@
+{
+  "manifest_version": 2,
+  "name": "SinglePDF Alpha",
+  "version": "0.1.0",
+  "description": "One-click HTML to PDF capture using a native SinglePDF host.",
+  "browser_action": {
+    "default_title": "Save page as PDF"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "run_at": "document_start",
+      "all_frames": true,
+      "match_about_blank": true,
+      "js": [
+        "lib/chrome-browser-polyfill.js",
+        "lib/single-file-frames.js",
+        "lib/single-file-extension-frames.js"
+      ]
+    },
+    {
+      "matches": ["<all_urls>"],
+      "run_at": "document_start",
+      "all_frames": false,
+      "js": [
+        "lib/chrome-browser-polyfill.js",
+        "lib/single-file-bootstrap.js",
+        "lib/single-file-extension-core.js",
+        "lib/single-file.js",
+        "capture-content.js"
+      ]
+    }
+  ],
+  "background": {
+    "scripts": [
+      "lib/chrome-browser-polyfill.js",
+      "lib/single-file-background.js",
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "web_accessible_resources": [
+    "lib/single-file-hooks-frames.js"
+  ],
+  "permissions": [
+    "activeTab",
+    "downloads",
+    "nativeMessaging",
+    "notifications",
+    "tabs",
+    "<all_urls>"
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "singlepdf@example.local"
+    }
+  }
+}

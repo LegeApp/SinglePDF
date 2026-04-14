@@ -1,0 +1,34 @@
+#!/bin/bash
+
+dpkg -s zip &> /dev/null
+if [ $? -ne 0 ]
+then
+    if ! command -v zip &> /dev/null; then
+        echo "Installing zip"
+        sudo apt install zip
+    fi
+fi
+
+dpkg -s jq &> /dev/null
+if [ $? -ne 0 ]
+then
+    if ! command -v jq &> /dev/null; then
+        echo "Installing jq"
+        sudo apt install jq
+    fi
+fi
+
+npm install
+npm update
+
+npx rollup -c rollup.config.js
+
+zip -r singlefile-extension-source.zip manifest.json package.json _locales src rollup*.js eslint.config.mjs build-extension.sh
+
+rm -f singlefile-extension-firefox.zip
+
+cp src/core/bg/config.js config.copy.js
+node -e "const fs=require('fs');const file='src/core/bg/config.js';const updated=fs.readFileSync(file,'utf8').replace(/forceWebAuthFlow: false/g,'forceWebAuthFlow: true');fs.writeFileSync(file,updated);"
+
+zip -r singlefile-extension-firefox.zip manifest.json lib _locales src
+mv config.copy.js src/core/bg/config.js

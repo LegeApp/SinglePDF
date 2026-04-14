@@ -1,0 +1,12 @@
+{
+  "name": "singlepdf.host",
+  "description": "SinglePDF native messaging host",
+  "path": "C:\\path\\to\\singlepdf.exe",
+  "type": "stdio",
+  "allowed_extensions": [
+    "singlepdf@example.local"
+  ],
+  "allowed_origins": [
+    "chrome-extension://REPLACE_WITH_EDGE_EXTENSION_ID/"
+  ]
+}

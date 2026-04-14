@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>SinglePDF Sample</title>
+  </head>
+  <body>
+    <main>
+      <h1>SinglePDF Alpha Sample</h1>
+      <p>This fixture exists to exercise the current Rust alpha pipeline from HTML parsing through PDF generation.</p>
+      <h2>What It Includes</h2>
+      <p>The current renderer focuses on semantic extraction and searchable text output rather than browser-perfect visual fidelity.</p>
+      <ul>
+        <li>Headings and paragraphs</li>
+        <li>List items</li>
+        <li>Image placeholders</li>
+        <li>Table placeholders</li>
+      </ul>
+      <img alt="System diagram" src="data:image/png;base64,AAAA">
+      <table>
+        <tr><th>Layer</th><th>Status</th></tr>
+        <tr><td>DOM processor</td><td>implemented</td></tr>
+        <tr><td>Pagination</td><td>implemented</td></tr>
+        <tr><td>SingleFile URL capture</td><td>planned</td></tr>
+      </table>
+      <blockquote>Alpha output should be stable, readable, and modular before it aims for browser-level fidelity.</blockquote>
+      <pre>fn main() {
+    println!("hello, singlepdf");
+}</pre>
+    </main>
+  </body>
+</html>
